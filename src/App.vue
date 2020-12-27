@@ -1,18 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Aluno/>
+    <Curso/>
+    <p> Aulas Assistidas</p>
+    <ul>
+      <li v-for="(aula, index) in aulasAssistidas" :key="index">
+        {{ aula.nome }} - {{ aula.duracao }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Aluno from './components/Aluno.vue';
+import Curso from './components/Curso.vue';
+import {mapState} from 'vuex';
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    Aluno,
+    Curso
+  },
+  computed: mapState(["aulasAssistidas"]),
 }
 </script>
 
@@ -21,8 +30,10 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+ul {
+    list-style-type: none;
 }
 </style>
